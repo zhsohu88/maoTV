@@ -33,7 +33,13 @@ jobs:
           grep -v '^\s*#' list.txt | grep -v '^\s*$' || true
           echo "======= Output after replacement (output.txt) ======="
           cat output.txt
-
+          
+      - name: Upload output.txt as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: output-txt
+          path: output.txt
+          
       - name: 提交并推送更改
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
@@ -41,11 +47,3 @@ jobs:
           git pull origin main
           git add output.txt
           git diff --quiet && git diff --staged --quiet || (git commit -m "自动更新 output.txt [skip ci]" && git push)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload output.txt as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: output-txt
-          path: output.txt
