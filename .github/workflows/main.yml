@@ -2,7 +2,7 @@ name: Daily Run main.py
 
 on:
   schedule:
-    - cron: '0 0 * * *' # 每天世界标准时间0点运行
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
@@ -11,14 +11,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
+
+      - name: List all files for debug
+        run: |
+          echo "当前目录文件列表："
+          ls -al
+
+      - name: Print working directory
+        run: |
+          pwd
+
       - name: Display list.txt content
         run: |
           echo "======= list.txt ======="
-          cat list.txt
+          cat list.txt || echo "list.txt 文件未找到！"
+
       - name: Run main.py and show results
         run: |
           python main.py
