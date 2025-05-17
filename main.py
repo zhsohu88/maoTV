@@ -6,7 +6,7 @@ def process_links(input_file, output_file):
         for line in fin:
             line = line.strip()
             if not line or line.startswith('#'):
-                continue  # Skip empty and comment lines
+                continue  # 跳过空行和注释行
             print(f"Fetching: {line}")
             try:
                 resp = requests.get(line, timeout=15)
