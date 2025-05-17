@@ -11,19 +11,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: List all files for debug
-        run: |
-          echo "当前目录文件列表："
-          ls -al
+        run: ls -al
 
       - name: Print working directory
         run: pwd
 
       - name: Display list.txt content
-        run: |
-          echo "======= list.txt ======="
-          cat list.txt || echo "list.txt 文件未找到！"
+        run: cat list.txt || echo "list.txt 文件未找到！"
 
       - name: Install dependencies
         run: pip install requests
@@ -35,3 +33,20 @@ jobs:
           grep -v '^\s*#' list.txt | grep -v '^\s*$' || true
           echo "======= Output after replacement (output.txt) ======="
           cat output.txt
+
+      - name: Commit and push output.txt to repository
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add output.txt
+          git diff --cached --quiet && echo "No changes to commit" || git commit -m "自动更新 output.txt [skip ci]"
+          git push
+        env:
+          # 该 token 默认有推送权限
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload output.txt as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: output-txt
+          path: output.txt
