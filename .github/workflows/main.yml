@@ -34,15 +34,14 @@ jobs:
           echo "======= Output after replacement (output.txt) ======="
           cat output.txt
 
-      - name: Commit and push output.txt to repository
+      - name: 提交并推送更改
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git pull origin main
           git add output.txt
-          git diff --cached --quiet && echo "No changes to commit" || git commit -m "自动更新 output.txt [skip ci]"
-          git push
+          git diff --quiet && git diff --staged --quiet || (git commit -m "自动更新 output.txt [skip ci]" && git push)
         env:
-          # 该 token 默认有推送权限
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload output.txt as artifact
