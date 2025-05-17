@@ -15,6 +15,14 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - name: Run main.py
+      - name: Display list.txt content
+        run: |
+          echo "======= list.txt ======="
+          cat list.txt
+      - name: Run main.py and show results
         run: |
           python main.py
+          echo "======= Links used (from list.txt, no comments) ======="
+          grep -v '^\s*#' list.txt | grep -v '^\s*$' || true
+          echo "======= Output after replacement (output.txt) ======="
+          cat output.txt
