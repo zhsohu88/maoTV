@@ -18,13 +18,15 @@ jobs:
           ls -al
 
       - name: Print working directory
-        run: |
-          pwd
+        run: pwd
 
       - name: Display list.txt content
         run: |
           echo "======= list.txt ======="
           cat list.txt || echo "list.txt 文件未找到！"
+
+      - name: Install dependencies
+        run: pip install requests
 
       - name: Run main.py and show results
         run: |
