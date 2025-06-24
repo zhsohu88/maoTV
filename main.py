@@ -1,4 +1,5 @@
 import requests
+from urllib.parse import quote
 
 def process_links(input_file, output_file):
     with open(input_file, 'r', encoding='utf-8') as fin, \
@@ -9,7 +10,35 @@ def process_links(input_file, output_file):
                 continue  # 跳过空行和注释行
             print(f"Fetching: {line}")
             try:
-                resp = requests.get(line, timeout=15)
+                # 中文域名转 punycode
+                if '://' in line:
+                    scheme, rest = line.split('://', 1)
+                    host, *path_parts = rest.split('/', 1)
+                    try:
+                        host = host.encode('idna').decode('ascii')
+                    except Exception:
+                        pass
+                    rest = '/'.join(path_parts) if path_parts else ''
+                    url = f"{scheme}://{host}/{rest}" if rest else f"{scheme}://{host}"
+                else:
+                    url = line
+
+                # 参数编码（仅对 b= 参数尝试编码）
+                if 'b=' in url:
+                    parts = url.split('b=')
+                    pre = parts[0]
+                    post = parts[1]
+                    post_encoded = quote(post, safe='')  # 编码参数
+                    url = pre + 'b=' + post_encoded
+
+                headers = {
+                    "User-Agent": "okhttp/3.15",
+                    "Accept-Language": "zh-CN,zh;q=0.8",
+                    "Connection": "Keep-Alive",
+                    "Accept-Encoding": "gzip"
+                }
+
+                resp = requests.get(url, headers=headers, timeout=15)
                 resp.raise_for_status()
                 content = resp.text.replace(' ', '\n')
                 fout.write(f'# From: {line}\n')
