@@ -1,2 +1,2 @@
-# Failed to fetch https://欧歌.e.nxog.top/m/111.php?ou=公众号欧歌app&mz=index&jar=index&123&b=欧歌: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+# Failed to fetch https://欧歌.e.nxog.top/m/111.php?ou=公众号欧歌app&mz=index&jar=index&123&b=欧歌: HTTPSConnectionPool(host='xn--dkw0c.e.nxog.top', port=443): Read timed out. (read timeout=15)
 
