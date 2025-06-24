@@ -1,2 +1,2 @@
-# Failed to fetch https://vip.nxog.top/m/: HTTPSConnectionPool(host='vip.nxog.top', port=443): Max retries exceeded with url: /m/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1000)')))
+# Failed to fetch http://o.nxog.top/m/111.php?ou=公众号欧歌app&mz=index&jar=index&123&b=欧歌: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
 
