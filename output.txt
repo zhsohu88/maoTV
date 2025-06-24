@@ -1,2 +1,2 @@
-# Failed to fetch https://xn--dkw0c.e.nxog.top/m/111.php?ou=%E5%85%AC%E4%BC%97%E5%8F%B7%E6%AC%A7%E6%AD%8Capp&mz=index&jar=index&123&b=%E6%AC%A7%E6%AD%8C: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+# Failed to fetch https://vip.nxog.top/m/: HTTPSConnectionPool(host='vip.nxog.top', port=443): Max retries exceeded with url: /m/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1000)')))
 
