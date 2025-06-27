@@ -1,2 +1,2 @@
-# Failed to fetch http://tv.nxog.top/m/111.php?ou=%E5%85%AC%E4%BC%97%E5%8F%B7%E6%AC%A7%E6%AD%8C: name 'url' is not defined
+# Failed to fetch http://tv.nxog.top/m/111.php?ou=%E5%85%AC%E4%BC%97%E5%8F%B7%E6%AC%A7%E6%AD%8C: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
 
