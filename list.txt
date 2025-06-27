@@ -7,4 +7,5 @@
 # https://欧歌dyh.e.nxog.top/m/111.php?ou=公众号欧歌app&mz=index&jar=index&123&b=欧歌dyh
 # https://欧歌.e.nxog.top/m/111.php?ou=公众号欧歌app&mz=index&jar=index&123&b=欧歌
 # https://xn--dkw0c.e.nxog.top/m/111.php?ou=%E5%85%AC%E4%BC%97%E5%8F%B7%E6%AC%A7%E6%AD%8Capp&mz=index&jar=index&123&b=%E6%AC%A7%E6%AD%8C
-http://o.nxog.top/m/111.php?ou=公众号欧歌app&mz=index&jar=index&123&b=欧歌
+# http://o.nxog.top/m/111.php?ou=公众号欧歌app&mz=index&jar=index&123&b=欧歌
+http://tv.nxog.top/m/111.php?ou=%E5%85%AC%E4%BC%97%E5%8F%B7%E6%AC%A7%E6%AD%8C
