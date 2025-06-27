@@ -10,15 +10,7 @@ def process_links(input_file, output_file):
                 continue  # 跳过空行和注释行
             print(f"Fetching: {line}")
             try:
-                url = line  # 直接使用原始链接，不做中文域名转 punycode
 
-                # 参数编码（仅对 b= 参数尝试编码）
-                if 'b=' in url:
-                    parts = url.split('b=')
-                    pre = parts[0]
-                    post = parts[1]
-                    post_encoded = quote(post, safe='')  # 编码参数
-                    url = pre + 'b=' + post_encoded
 
                 headers = {
                     "accept": "*/*",
