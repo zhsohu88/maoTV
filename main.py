@@ -37,9 +37,18 @@ def process_links(input_file, output_file):
                     response += data
                 s.close()
 
-                # 新增：原始响应内容保存
+                # 保存原始响应内容
                 with open('raw_response.txt', 'wb') as rawf:
                     rawf.write(response)
+
+                # 打印原始响应内容（十六进制和文本，便于分析）
+                print("======= 原始响应内容（十六进制） =======")
+                print(response.hex(" ", 1))
+                print("======= 原始响应内容（文本） =======")
+                try:
+                    print(response.decode('utf-8', errors='replace'))
+                except Exception:
+                    print("无法以UTF-8解码原始响应内容")
 
                 response_text = response.decode('utf-8', errors='replace')
                 header_end = response_text.find('\r\n\r\n')
