@@ -1,4 +1,5 @@
 import http.client
+from urllib.parse import urlparse
 
 def process_links(input_file, output_file):
     with open(input_file, 'r', encoding='utf-8') as fin, \
@@ -9,20 +10,17 @@ def process_links(input_file, output_file):
                 continue
             print(f"Fetching: {line}")
             try:
-                # 只支持 http
-                if not line.startswith("http://"):
-                    raise Exception("只支持 http 链接")
-                # 解析主机和路径
-                url = line[len("http://"):]
-                host, path = url.split("/", 1)
-                path = "/" + path
-
+                o = urlparse(line)
+                host = o.hostname
+                path = o.path
+                if o.query:
+                    path += '?' + o.query
                 conn = http.client.HTTPConnection(host, timeout=15)
                 conn.putrequest("GET", path)
                 conn.putheader("accept", "*/*")
                 conn.putheader("connection", "Keep-Alive")
                 conn.putheader("user-agent", "okhttp/3.15")
-                conn.putheader("Host", host)
+                # 不手动加 Host 头
                 conn.endheaders()
                 resp = conn.getresponse()
                 status = resp.status
