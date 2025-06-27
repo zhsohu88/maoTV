@@ -32,9 +32,10 @@ def process_links(input_file, output_file):
                     url = pre + 'b=' + post_encoded
 
                 headers = {
-                    "User-Agent": "okhttp/3.15",
-                    "Accept-Language": "zh-CN,zh;q=0.8",
-                    "Connection": "Keep-Alive",
+                    "accept": "*/*",
+                    "connection": "Keep-Alive",
+                    "user-agent": "okhttp/3.15",
+                    "Host": "tv.nxog.top",
                     "Accept-Encoding": "gzip"
                 }
 
