@@ -1,5 +1,4 @@
 import requests
-from urllib.parse import quote
 
 def process_links(input_file, output_file):
     with open(input_file, 'r', encoding='utf-8') as fin, \
@@ -10,7 +9,7 @@ def process_links(input_file, output_file):
                 continue  # 跳过空行和注释行
             print(f"Fetching: {line}")
             try:
-
+                url = line  # 直接使用原始链接，不做任何参数处理
 
                 headers = {
                     "accept": "*/*",
