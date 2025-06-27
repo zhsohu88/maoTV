@@ -9,14 +9,12 @@ def process_links(input_file, output_file):
                 continue
             print(f"Fetching: {line}")
             try:
-                # 解析URL
                 if not line.startswith("http://"):
                     raise Exception("只支持 http 链接")
                 url = line[len("http://"):]
                 host, path = url.split("/", 1)
                 path = "/" + path
 
-                # 构造原始HTTP请求
                 request = (
                     f"GET {path} HTTP/1.1\r\n"
                     f"Host: {host}\r\n"
@@ -26,7 +24,6 @@ def process_links(input_file, output_file):
                     f"\r\n"
                 )
 
-                # 发送请求
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 s.settimeout(15)
                 s.connect((host, 80))
@@ -40,15 +37,23 @@ def process_links(input_file, output_file):
                     response += data
                 s.close()
 
-                # 解析HTTP响应
+                # 新增：原始响应内容保存
+                with open('raw_response.txt', 'wb') as rawf:
+                    rawf.write(response)
+
                 response_text = response.decode('utf-8', errors='replace')
                 header_end = response_text.find('\r\n\r\n')
                 if header_end == -1:
-                    raise Exception("无效HTTP响应")
+                    # 写下原始响应供排查
+                    fout.write(f"# From: {line}\n")
+                    fout.write("# 未检测到有效HTTP头，原始响应如下：\n")
+                    fout.write(response_text + '\n\n')
+                    print(f"Failed to fetch {line}: 未检测到有效HTTP头，原始响应已保存到 raw_response.txt")
+                    continue
+
                 headers = response_text[:header_end]
                 content = response_text[header_end+4:]
 
-                # 检查状态码
                 status_line = headers.splitlines()[0]
                 if "200" not in status_line:
                     raise Exception(status_line)
