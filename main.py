@@ -1,11 +1,10 @@
-import requests
+import httpx
 
 def process_links(input_file, output_file):
     headers = {
         'accept': '*/*',
         'connection': 'Keep-Alive',
         'user-agent': 'MTV',
-        # 'Host': 'dd.rihou.cc:555',  # 通常不建议手动加 Host
         'Accept-Encoding': 'gzip',
     }
 
@@ -17,12 +16,13 @@ def process_links(input_file, output_file):
                 continue
             print(f"Fetching: {line}")
             try:
-                resp = requests.get(line, headers=headers, timeout=15, stream=True)
-                resp.raise_for_status()
-                content = resp.text.replace(' ', '\n')
-                fout.write(f'# From: {line}\n')
-                fout.write(content + '\n\n')
-                print(f"Fetched and wrote content from {line}")
+                with httpx.Client() as client:
+                    resp = client.get(line, headers=headers, timeout=15)
+                    resp.raise_for_status()
+                    content = resp.text.replace(' ', '\n')
+                    fout.write(f'# From: {line}\n')
+                    fout.write(content + '\n\n')
+                    print(f"Fetched and wrote content from {line}")
             except Exception as e:
                 print(f"Failed to fetch {line}: {e}")
                 fout.write(f"# Failed to fetch {line}: {e}\n\n")
