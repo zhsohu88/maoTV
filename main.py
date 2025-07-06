@@ -5,7 +5,7 @@ def process_links(input_file, output_file):
         'accept': '*/*',
         'connection': 'Keep-Alive',
         'user-agent': 'MTV',
-        'Host': 'dd.rihou.cc:555',
+        # 'Host': 'dd.rihou.cc:555',  # 通常不建议手动加 Host
         'Accept-Encoding': 'gzip',
     }
 
@@ -14,10 +14,10 @@ def process_links(input_file, output_file):
         for line in fin:
             line = line.strip()
             if not line or line.startswith('#'):
-                continue  # 跳过空行和注释行
+                continue
             print(f"Fetching: {line}")
             try:
-                resp = requests.get(line, headers=headers, timeout=15)
+                resp = requests.get(line, headers=headers, timeout=15, stream=True)
                 resp.raise_for_status()
                 content = resp.text.replace(' ', '\n')
                 fout.write(f'# From: {line}\n')
