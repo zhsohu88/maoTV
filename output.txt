@@ -1,4 +1,2 @@
-# From: http://tv.nxog.top/m/111.php?ou=%E5%85%AC%E4%BC%97%E5%8F%B7%E6%AC%A7%E6%AD%8C
-# 未检测到有效HTTP头，原始响应如下：
-
+# Failed to fetch http://dd.rihou.cc:555/gggg.nzk/: [Errno -2] Name or service not known
 
