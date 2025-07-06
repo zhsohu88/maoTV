@@ -20,7 +20,7 @@ def process_links(input_file, output_file):
                     f"Host: {host}\r\n"
                     f"accept: */*\r\n"
                     f"connection: Keep-Alive\r\n"
-                    f"user-agent: okhttp/3.15\r\n"
+                    f"user-agent: MTV\r\n"
                     f"\r\n"
                 )
 
