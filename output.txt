@@ -1,2 +1,2 @@
-# Failed to fetch http://dd.rihou.cc:555/gggg.nzk/: timed out
+# Failed to fetch http://dd.rihou.cc:555/gggg.nzk: timed out
 
