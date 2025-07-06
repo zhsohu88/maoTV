@@ -27,7 +27,9 @@ jobs:
         run: cat list.txt || echo "list.txt 文件未找到！"
 
       - name: Install dependencies
-        run: pip install requests
+        run: |
+          pip install requests
+          pip install httpx
 
       - name: Run main.py and show results
         run: |
@@ -36,13 +38,13 @@ jobs:
           grep -v '^\s*#' list.txt | grep -v '^\s*$' || true
           echo "======= Output after replacement (output.txt) ======="
           cat output.txt
-          
+
       - name: Upload output.txt as artifact
         uses: actions/upload-artifact@v4
         with:
           name: output-txt
           path: output.txt
-          
+
       - name: 提交并推送更改
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
