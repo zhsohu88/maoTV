@@ -4,7 +4,7 @@ def process_links(input_file, output_file):
     headers = {
         'accept': '*/*',
         'connection': 'Keep-Alive',
-        'user-agent': 'okhttp/4.12.0',
+        'user-agent': 'MTV',
         # 'Host': 'dd.rihou.cc:555',  # 通常不建议手动加 Host
         'Accept-Encoding': 'gzip',
     }
