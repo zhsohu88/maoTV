@@ -1,2 +1,2 @@
-# Failed to fetch http://ghp.keleyaa.com/http://dd.rihou.cc:555/gggg.nzk: 429 Client Error: Too Many Requests for url: http://ghp.keleyaa.com/http://dd.rihou.cc:555/gggg.nzk
+# Failed to fetch http://ghp.keleyaa.com/dd.rihou.cc:555/gggg.nzk: 429 Client Error: Too Many Requests for url: http://ghp.keleyaa.com/dd.rihou.cc:555/gggg.nzk
 
